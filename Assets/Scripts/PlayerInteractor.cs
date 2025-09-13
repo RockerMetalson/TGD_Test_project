@@ -4,10 +4,15 @@ using TMPro;
 public class PlayerInteractor : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    public float interactDistance = 2f; // How far the player can interact
+    public float interactDistance = 2f;
 
     [Header("UI Prompt")]
-    public TextMeshProUGUI promptText;  // Drag TMP text here in Inspector
+    public TextMeshProUGUI promptText;
+
+    [Header("Player Components")]
+    public Animator playerAnimator;          
+    public AudioSource audioSource;          
+    public AudioClip plowSound;              
 
     private Camera mainCamera;
     private IInteractable currentTarget;
@@ -15,14 +20,10 @@ public class PlayerInteractor : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-        if (!mainCamera)
-            Debug.LogError("[PlayerInteractor] Main Camera not found! Tag your camera as MainCamera.");
+        if (!mainCamera) Debug.LogError("[PlayerInteractor] Main Camera not found!");
 
-        if (!promptText)
-            Debug.LogError("[PlayerInteractor] Prompt Text not assigned!");
-
-        if (promptText)
-            promptText.gameObject.SetActive(false);
+        if (!promptText) Debug.LogError("[PlayerInteractor] Prompt Text not assigned!");
+        else promptText.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -32,7 +33,39 @@ public class PlayerInteractor : MonoBehaviour
         if (currentTarget != null && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("[PlayerInteractor] Interacting with current target.");
+
+            // Play animation always
+            if (playerAnimator)
+                playerAnimator.SetTrigger("Pickup");
+
+            // Play sound ONLY if the tile is currently Green
+            if (currentTarget is FarmTile farmTile && farmTile.currentState == TileState.Green)
+            {
+                if (audioSource && plowSound)
+                {
+                    audioSource.PlayOneShot(plowSound);
+                    Debug.Log("[PlayerInteractor] Plow sound played for Green tile.");
+                }
+            }
+
             currentTarget.Interact();
+        }
+    }
+
+    private void PlayPickupAnimationAndSound()
+    {
+        // Play Pickup animation
+        if (playerAnimator)
+        {
+            playerAnimator.SetTrigger("Pickup");
+            Debug.Log("[PlayerInteractor] Pickup animation triggered.");
+        }
+
+        // Play sound effect
+        if (audioSource && plowSound)
+        {
+            audioSource.PlayOneShot(plowSound);
+            Debug.Log("[PlayerInteractor] Plow sound played.");
         }
     }
 
@@ -41,17 +74,13 @@ public class PlayerInteractor : MonoBehaviour
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.red);
 
-        // Use ONLY the FarmTile layer, while automatically ignoring the Player
-        int farmTileMask = LayerMask.GetMask("FarmTile"); // Ray will only hit this layer
+        int farmTileMask = LayerMask.GetMask("FarmTile");
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, farmTileMask))
         {
-            Debug.Log($"[PlayerInteractor] Ray hit: {hit.collider.name}");
-
             if (hit.collider.CompareTag("Interactable"))
             {
                 IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
-
                 if (interactable != null)
                 {
                     currentTarget = interactable;
@@ -59,22 +88,9 @@ public class PlayerInteractor : MonoBehaviour
                     promptText.gameObject.SetActive(true);
                     return;
                 }
-                else
-                {
-                    Debug.LogWarning("[PlayerInteractor] Tagged object but no IInteractable found!");
-                }
             }
-            else
-            {
-                Debug.LogWarning("[PlayerInteractor] Hit object on FarmTile layer but without Interactable tag.");
-            }
-        }
-        else
-        {
-            Debug.Log("[PlayerInteractor] Ray did not hit anything.");
         }
 
-        // Hide prompt when nothing interactable is hit
         currentTarget = null;
         promptText.gameObject.SetActive(false);
     }
