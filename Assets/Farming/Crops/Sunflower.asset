@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e063d037efa47eb42a5b4ad859e71ed5, type: 3}
+  m_Name: Sunflower
+  m_EditorClassIdentifier: Assembly-CSharp::SeedData
+  seedName: SunflowerSeed
+  seedPrefab: {fileID: 1939220343108472327, guid: e7997aa72a2f37e48a05b60f2afb554a, type: 3}
+  growthPrefabs:
+  - {fileID: 477077496656560835, guid: 92179bb2deffa62469527c481aea4eaa, type: 3}
+  - {fileID: 7894121702400547446, guid: 0078b9131652b014992393af8523ccbc, type: 3}
+  - {fileID: 4029996152737623616, guid: 8f310ba589526d142839442e3eb756d0, type: 3}
+  - {fileID: 1889704791735354376, guid: cf67da592a170c44a84fb43b95f4d848, type: 3}
+  totalGrowTime: 30
+  seedCost: 5
+  sellValue: 10
