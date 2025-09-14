@@ -20,11 +20,12 @@ public class FarmTile : MonoBehaviour
 
     private void Update()
     {
-        // Auto-reset plowed → green if nothing planted
+        // Auto-reset plowed tiles back to Green if no seed was planted
         if (currentState == TileState.Plowed)
         {
             plowedTimer += Time.deltaTime;
-            if (plowedTimer >= autoResetTime) SetState(TileState.Green);
+            if (plowedTimer >= autoResetTime)
+                SetState(TileState.Green);
         }
     }
 
@@ -33,9 +34,7 @@ public class FarmTile : MonoBehaviour
         currentState = newState;
         plowedTimer = 0f;
 
-        // Green on Green only
         greenVisual.SetActive(currentState == TileState.Green);
-        // Keep plowed mesh visible for both Plowed and Planted
         plowedVisual.SetActive(currentState == TileState.Plowed || currentState == TileState.Planted);
     }
 
@@ -44,7 +43,7 @@ public class FarmTile : MonoBehaviour
         switch (currentState)
         {
             case TileState.Green:
-                PlowTile();
+                SetState(TileState.Plowed);
                 break;
 
             case TileState.Plowed:
@@ -58,39 +57,31 @@ public class FarmTile : MonoBehaviour
         }
     }
 
-    private void PlowTile()
-    {
-        Debug.Log("Tile plowed");
-        SetState(TileState.Plowed);
-    }
-
     private void TryPlantSeed()
     {
         if (SeedSelectorUI.ActiveSeed == null)
         {
-            Debug.LogWarning("No seed selected.");
+            Debug.LogWarning("No seed selected to plant.");
             return;
         }
 
-        var inventory = FindObjectOfType<PlayerInventory>();
+        PlayerInventory inventory = FindObjectOfType<PlayerInventory>();
         if (!inventory.UseSeed(SeedSelectorUI.ActiveSeed))
         {
-            Debug.LogWarning($"No '{SeedSelectorUI.ActiveSeed.seedName}' seeds in inventory.");
+            Debug.LogWarning($"No seeds of type {SeedSelectorUI.ActiveSeed.seedName} in inventory.");
             return;
         }
 
-        // Create a crop holder object under the spawn point
-        var cropGO = new GameObject($"Crop_{SeedSelectorUI.ActiveSeed.seedName}");
-        cropGO.transform.SetParent(cropSpawnPoint);
-        cropGO.transform.localPosition = Vector3.zero;
-        cropGO.transform.localRotation = Quaternion.identity;
+        GameObject cropHolder = new GameObject($"Crop_{SeedSelectorUI.ActiveSeed.seedName}");
+        cropHolder.transform.SetParent(cropSpawnPoint);
+        cropHolder.transform.localPosition = Vector3.zero;
+        cropHolder.transform.localRotation = Quaternion.identity;
 
-        var crop = cropGO.AddComponent<Crop>();
+        Crop crop = cropHolder.AddComponent<Crop>();
         crop.Initialize(SeedSelectorUI.ActiveSeed);
         activeCrop = crop;
 
         SetState(TileState.Planted);
-        Debug.Log($"{SeedSelectorUI.ActiveSeed.seedName} planted.");
     }
 
     private void HarvestCrop()
@@ -100,8 +91,8 @@ public class FarmTile : MonoBehaviour
             activeCrop.Harvest();
             activeCrop = null;
         }
+
         SetState(TileState.Green);
-        Debug.Log("Crop harvested → tile back to Green.");
     }
 
     public string GetInteractionText()
@@ -113,7 +104,8 @@ public class FarmTile : MonoBehaviour
             case TileState.Plowed:
                 return "Press E to Plant";
             case TileState.Planted:
-                if (activeCrop != null && activeCrop.IsReadyToHarvest) return "Press E to Harvest";
+                if (activeCrop != null && activeCrop.IsReadyToHarvest)
+                    return "Press E to Harvest";
                 return "Growing...";
             default:
                 return "";
