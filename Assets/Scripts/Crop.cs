@@ -2,57 +2,69 @@
 
 public class Crop : MonoBehaviour
 {
-    public SeedData seedData;
-    private float growthTimer;
-    private int currentStage = -1;
-    private GameObject currentVisual;
+    public SeedData seedData;            // Set in Initialize
+    public float growthTimer = 0f;
 
-    public bool IsReadyToHarvest => growthTimer >= seedData.totalGrowTime;
+    private int currentStage = -1;       // -1 so first spawn always happens
+    private GameObject currentVisual;    // The spawned instance for the current stage
 
-    public void Initialize(SeedData seed)
+    public bool IsReadyToHarvest => seedData != null && growthTimer >= seedData.totalGrowTime;
+
+    public void Initialize(SeedData data)
     {
-        seedData = seed;
+        seedData = data;
         growthTimer = 0f;
-        UpdateStageVisual(0); // start with stage 1
+        currentStage = -1;
+        SpawnStage(0);
     }
 
     private void Update()
     {
+        if (seedData == null || seedData.growthPrefabs == null || seedData.growthPrefabs.Length == 0) return;
+
         growthTimer += Time.deltaTime;
 
         float stageDuration = seedData.totalGrowTime / seedData.growthPrefabs.Length;
-        int stage = Mathf.FloorToInt(growthTimer / stageDuration);
-        stage = Mathf.Min(stage, seedData.growthPrefabs.Length - 1);
+        int targetStage = Mathf.FloorToInt(growthTimer / stageDuration);
+        targetStage = Mathf.Clamp(targetStage, 0, seedData.growthPrefabs.Length - 1);
 
-        if (stage != currentStage)
+        if (targetStage != currentStage)
         {
-            UpdateStageVisual(stage);
+            SpawnStage(targetStage);
 
-            // If we just reached the LAST stage → instantly ready to harvest
-            if (stage == seedData.growthPrefabs.Length - 1)
+            // Optional: as soon as final stage appears, mark ready immediately
+            if (targetStage == seedData.growthPrefabs.Length - 1)
             {
-                growthTimer = seedData.totalGrowTime; // instantly mark as fully grown
-                Debug.Log($"{seedData.seedName} is now fully grown and ready to harvest!");
+                growthTimer = seedData.totalGrowTime;
+                Debug.Log($"{seedData.seedName} reached final stage → ready to harvest.");
             }
         }
     }
 
-
-    private void UpdateStageVisual(int stage)
+    private void SpawnStage(int stage)
     {
-        if (currentVisual != null)
-            Destroy(currentVisual);
+        if (seedData.growthPrefabs[stage] == null)
+        {
+            Debug.LogWarning($"Growth prefab missing for stage {stage} on {seedData.seedName}");
+            return;
+        }
 
-        currentVisual = Instantiate(seedData.growthPrefabs[stage], transform.position, Quaternion.identity, transform);
+        if (currentVisual != null) Destroy(currentVisual);
+
+        currentVisual = Instantiate(
+            seedData.growthPrefabs[stage],
+            transform.position,
+            Quaternion.identity,
+            transform
+        );
+
         currentStage = stage;
-        Debug.Log($"{seedData.seedName} grew to stage {stage + 1}");
+        Debug.Log($"{seedData.seedName} → stage {stage + 1}");
     }
 
     public void Harvest()
     {
-        if (currentVisual != null)
-            Destroy(currentVisual);
-
-        Destroy(gameObject); // remove entire crop object
+        if (currentVisual != null) Destroy(currentVisual);
+        Destroy(gameObject);
     }
 }
