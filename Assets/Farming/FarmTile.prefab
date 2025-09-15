@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6614543100812762107
+--- !u!1 &48852964100869625
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8299256633766578813}
-  - component: {fileID: 7216430575979666787}
-  - component: {fileID: 8628539977024168460}
-  m_Layer: 3
-  m_Name: FarmTile
-  m_TagString: Interactable
+  - component: {fileID: 7923376714709903979}
+  - component: {fileID: 675505600255114964}
+  m_Layer: 0
+  m_Name: FarmTileGround
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8299256633766578813
+--- !u!4 &7923376714709903979
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6614543100812762107}
+  m_GameObject: {fileID: 48852964100869625}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2589407558483213215}
-  - {fileID: 8883915104945821952}
-  - {fileID: 879666545614756669}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 2439812724783478180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7216430575979666787
+--- !u!65 &675505600255114964
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6614543100812762107}
+  m_GameObject: {fileID: 48852964100869625}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -55,26 +51,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.0158954, y: 2.0080242, z: 2.0147548}
-  m_Center: {x: 0, y: 0.9962635, z: 0}
---- !u!114 &8628539977024168460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6614543100812762107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 059da2bba94111e49a3acfec6e0ff49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FarmTile
-  currentState: 0
-  plowedResetTime: 15
-  greenVisual: {fileID: 2928673294077534501}
-  plowedVisual: {fileID: 8070961893599445946}
-  cropSpawnPoint: {fileID: 879666545614756669}
---- !u!1 &7897725246791047231
+  m_Size: {x: 2, y: 1.99, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3026291581703304868
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +61,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 879666545614756669}
+  - component: {fileID: 225130501239591884}
   m_Layer: 3
   m_Name: CropSpawn
   m_TagString: Untagged
@@ -90,40 +69,211 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &879666545614756669
+--- !u!4 &225130501239591884
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7897725246791047231}
+  m_GameObject: {fileID: 3026291581703304868}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8299256633766578813}
+  m_Father: {fileID: 8271570210734021979}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &8404959294904415487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8271570210734021979}
+  - component: {fileID: 7403083671660534660}
+  - component: {fileID: 7859968218143036495}
+  m_Layer: 3
+  m_Name: FarmTileTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8271570210734021979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404959294904415487}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5696874946968430286}
+  - {fileID: 1330208579462745865}
+  - {fileID: 225130501239591884}
+  m_Father: {fileID: 2439812724783478180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4275781399215889266
+--- !u!65 &7403083671660534660
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404959294904415487}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &7859968218143036495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404959294904415487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059da2bba94111e49a3acfec6e0ff49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FarmTile
+  greenVisual: {fileID: 4919211965413358708}
+  plowedVisual: {fileID: 1818901243875923379}
+  cropSpawnPoint: {fileID: 225130501239591884}
+  autoResetTime: 10
+  currentState: 0
+  activeCrop: {fileID: 0}
+--- !u!1 &8605707343998646566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2439812724783478180}
+  m_Layer: 3
+  m_Name: FarmTile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2439812724783478180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605707343998646566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7923376714709903979}
+  - {fileID: 8271570210734021979}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &140644471938018087
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8299256633766578813}
+    m_TransformParent: {fileID: 8271570210734021979}
+    m_Modifications:
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_Name
+      value: 3D_Tile_Farm_Field_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+--- !u!4 &1330208579462745865 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+  m_PrefabInstance: {fileID: 140644471938018087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1818901243875923379 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
+  m_PrefabInstance: {fileID: 140644471938018087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6320399000717887011
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8271570210734021979}
     m_Modifications:
     - target: {fileID: 1437242426805090903, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
       propertyPath: m_Name
       value: 3D_Tile_Ground_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437242426805090903, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437242426805090903, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1781680475063329005, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -170,88 +320,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
---- !u!4 &2589407558483213215 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1781680475063329005, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
-  m_PrefabInstance: {fileID: 4275781399215889266}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2928673294077534501 stripped
+--- !u!1 &4919211965413358708 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1437242426805090903, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
-  m_PrefabInstance: {fileID: 4275781399215889266}
+  m_PrefabInstance: {fileID: 6320399000717887011}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7551537639266254126
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8299256633766578813}
-    m_Modifications:
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_Name
-      value: 3D_Tile_Farm_Field_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
---- !u!1 &8070961893599445946 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1787263219254001300, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-  m_PrefabInstance: {fileID: 7551537639266254126}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8883915104945821952 stripped
+--- !u!4 &5696874946968430286 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1406938107616502830, guid: c7c54066debef28409bc2fe39152fe52, type: 3}
-  m_PrefabInstance: {fileID: 7551537639266254126}
+  m_CorrespondingSourceObject: {fileID: 1781680475063329005, guid: 2e1ecf6b062fbd248a32028e6ef85fcd, type: 3}
+  m_PrefabInstance: {fileID: 6320399000717887011}
   m_PrefabAsset: {fileID: 0}
